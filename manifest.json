@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "推しメモシェア-OshiMemo Share｜YouTube Notes & Timestamped Templates",
+  "version": "2.5",
+  "description": "YouTube timestamped notes and template insertion tool for fan activities(推し活), video corrections, and more!",
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+    "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://*.googlevideo.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/watch*"],
+      "css": ["sidebar.css"],
+      "js": ["content.js", "jszip.min.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["jszip.min.js", "icon/*"],
+      "matches": ["https://www.youtube.com/*"]
+    }
+  ]
+}
